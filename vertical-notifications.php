@@ -1,51 +1,60 @@
 <?php
 /*
 Plugin Name: Vertical Notifications
-Description: Adds a Notification post type and displays vertical scrolling notices on homepage using shortcode.
-Version: 1.0
-Author: Samarjit Kashyp
+Plugin URI: https://digihiveassam.com
+Description: Adds a Notification post type and displays vertical scrolling notices using a shortcode.
+Version: 1.2.3
+Author: Digihive Assam
+Author URI: https://digihiveassam.com
+License: GPLv2 or later
+Text Domain: vertical-notifications
 */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
+if (!defined('ABSPATH')) exit;
 
-// Register "Notification" Custom Post Type
-function vn_register_notification_post_type() {
+// Register Custom Post Type: Notification
+function vn_register_post_type() {
     register_post_type('notification', array(
         'labels' => array(
-            'name' => 'Notifications',
-            'singular_name' => 'Notification',
-            'add_new' => 'Add New',
-            'add_new_item' => 'Add New Notification',
-            'edit_item' => 'Edit Notification',
-            'new_item' => 'New Notification',
-            'view_item' => 'View Notification',
-            'search_items' => 'Search Notifications',
-            'not_found' => 'No notifications found',
-            'not_found_in_trash' => 'No notifications found in Trash',
+            'name' => __('Notifications', 'vertical-notifications'),
+            'singular_name' => __('Notification', 'vertical-notifications'),
+            'add_new' => __('Add New', 'vertical-notifications'),
+            'add_new_item' => __('Add New Notification', 'vertical-notifications'),
+            'edit_item' => __('Edit Notification', 'vertical-notifications'),
+            'new_item' => __('New Notification', 'vertical-notifications'),
+            'view_item' => __('View Notification', 'vertical-notifications'),
+            'not_found' => __('No notifications found', 'vertical-notifications'),
         ),
         'public' => true,
-        'has_archive' => false,
-        'rewrite' => array('slug' => 'notification'),
-        'supports' => array('title'),
         'menu_icon' => 'dashicons-megaphone',
+        'supports' => array('title'),
+        'show_in_rest' => true
     ));
 }
-add_action('init', 'vn_register_notification_post_type');
+add_action('init', 'vn_register_post_type');
 
-// Shortcode to display vertical notifications
-function vn_display_notifications() {
+// Enqueue CSS and JS
+function vn_enqueue_assets() {
+    wp_enqueue_style('vn-style', plugin_dir_url(__FILE__) . 'assets/css/vertical-notifications.css');
+    wp_enqueue_script('vn-script', plugin_dir_url(__FILE__) . 'assets/js/vertical-notifications.js', array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'vn_enqueue_assets');
+
+// Shortcode: [vertical_notifications]
+function vn_display_shortcode() {
+    $post_limit = get_option('vn_post_limit', 5);
+    $scroll_speed = get_option('vn_scroll_speed', 18);
+
     $args = array(
         'post_type' => 'notification',
-        'posts_per_page' => 5,
+        'posts_per_page' => intval($post_limit),
         'post_status' => 'publish'
     );
     $query = new WP_Query($args);
 
     ob_start();
     if ($query->have_posts()) : ?>
-        <div id="notification_wrapper">
+        <div id="notification_wrapper" data-speed="<?php echo esc_attr($scroll_speed); ?>">
             <div class="vn-notification-list">
                 <?php while ($query->have_posts()) : $query->the_post(); ?>
                     <div class="vn-notification-item">
@@ -54,55 +63,13 @@ function vn_display_notifications() {
                 <?php endwhile; ?>
             </div>
         </div>
-        <style>
-            #notification_wrapper {
-                height: 200px;
-                overflow: hidden;
-                position: relative;
-                background: #f8fbff;
-                border: 1px solid #007bff;
-                padding: 10px;
-                margin-bottom: 20px;
-            }
-
-            .vn-notification-list {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                animation: vnScroll 18s linear infinite;
-            }
-
-            .vn-notification-item {
-                padding: 5px 0;
-                border-bottom: 1px dashed #ddd;
-                font-weight: 600;
-            }
-
-            .vn-notification-item a {
-                text-decoration: none;
-                color: #003366;
-            }
-
-            .vn-notification-item a:hover {
-                color: #007bff;
-            }
-
-            @keyframes vnScroll {
-                0% {
-                    transform: translateY(0);
-                }
-                100% {
-                    transform: translateY(-100%);
-                }
-            }
-
-            #notification_wrapper:hover .vn-notification-list {
-                animation-play-state: paused;
-            }
-        </style>
-    <?php
-    endif;
+    <?php endif;
     wp_reset_postdata();
     return ob_get_clean();
 }
-add_shortcode('vertical_notifications', 'vn_display_notifications');
+add_shortcode('vertical_notifications', 'vn_display_shortcode');
+
+// Include admin settings page
+if (is_admin()) {
+    require_once plugin_dir_path(__FILE__) . 'settings-page.php';
+}

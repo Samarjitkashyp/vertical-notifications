@@ -1,0 +1,35 @@
+#notification_wrapper {
+    height: 200px;
+    overflow: hidden;
+    background: #f8fbff;
+    border: 1px solid #007bff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.vn-notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: vnScroll var(--vn-speed, 18s) linear infinite;
+}
+
+.vn-notification-item {
+    padding: 5px 0;
+    border-bottom: 1px dashed #ddd;
+    font-weight: 600;
+}
+
+.vn-notification-item a {
+    text-decoration: none;
+    color: #003366;
+}
+
+.vn-notification-item a:hover {
+    color: #007bff;
+}
+
+@keyframes vnScroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
