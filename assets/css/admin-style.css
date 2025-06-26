@@ -27,3 +27,12 @@
 .shortcode__wrapper__123 p{
     color: #fff;
 }
+
+.notification__wrapper .header_inner{
+    width: 300px;
+    margin-top: 20px;
+}
+
+.notification__wrapper .plugin__logo{
+    width: 100%;
+}

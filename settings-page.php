@@ -27,7 +27,10 @@ add_action('admin_menu', 'vn_add_settings_page');
 function vn_settings_page_html() {
     ?>
     <div class="wrap notification__wrapper">
-        <h1>Vertical Notifications Settings</h1>
+        <div class="header_inner">
+            <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/images/logo.png'; ?>" class="plugin__logo" alt="Plugin Logo">
+            <h1 style="margin: 0;">Vertical Notifications Settings</h1>
+        </div>
         <form method="post" action="options.php">
             <?php settings_fields('vn_settings_group'); ?>
             <?php do_settings_sections('vn_settings_group'); ?>
