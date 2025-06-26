@@ -3,7 +3,7 @@
 Plugin Name: Vertical Notifications
 Plugin URI: https://digihiveassam.com
 Description: Adds a Notification post type and displays vertical scrolling notices using a shortcode.
-Version: 1.3.3
+Version: 1.3.6
 Author: Digihive Assam
 Author URI: https://digihiveassam.com
 License: GPLv2 or later
