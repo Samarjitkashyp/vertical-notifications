@@ -1,3 +1,11 @@
+/* Global CSS Reset */
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
 #notification_wrapper {
     height: 200px;
     overflow: hidden;
@@ -27,6 +35,11 @@
 
 .vn-notification-item a:hover {
     color: #007bff;
+}
+
+/* Pause scroll when user hovers over the wrapper */
+#notification_wrapper:hover .vn-notification-list {
+  animation-play-state: paused;
 }
 
 @keyframes vnScroll {

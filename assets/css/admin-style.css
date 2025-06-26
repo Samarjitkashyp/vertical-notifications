@@ -1,0 +1,29 @@
+/* Style for the shortcode section in settings page */
+.shortcode__wrapper__123 {
+    background: #3ab475;
+    background: linear-gradient(78deg, rgba(58, 180, 117, 1) 0%, rgba(15, 8, 87, 1) 100%, rgba(24, 3, 26, 1) 76%);
+    border-left: 4px solid #0073aa;
+    padding: 15px 20px;
+    margin-top: 30px;
+    border-radius: 4px;
+    width: 350px;
+}
+
+.shortcode__wrapper__123 .short__title {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.shortcode__wrapper__123 code {
+    background-color: #fff;
+    padding: 5px 10px;
+    display: inline-block;
+    border: 1px dashed #ccc;
+    font-size: 14px;
+    color: #333;
+}
+
+.shortcode__wrapper__123 p{
+    color: #fff;
+}
