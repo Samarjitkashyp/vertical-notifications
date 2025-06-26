@@ -17,6 +17,11 @@ if (is_admin()) {
     require_once plugin_dir_path(__FILE__) . 'admin-hooks.php';
 }
 
+// Dashboard widget
+if (is_admin()) {
+    require_once plugin_dir_path(__FILE__) . 'dashboard-widget.php';
+}
+
 // Register Custom Post Type: Notification
 function vn_register_post_type() {
     register_post_type('notification', array(
