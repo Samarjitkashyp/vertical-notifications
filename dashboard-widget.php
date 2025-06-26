@@ -21,11 +21,19 @@ function vn_dashboard_widget_display() {
     if ($query->have_posts()) {
         echo '<ul>';
         while ($query->have_posts()) : $query->the_post();
-            echo '<li><a href="' . get_permalink() . '" target="_blank">' . get_the_title() . '</a></li>';
+            $title = get_the_title();
+            $permalink = get_permalink();
+            ?>
+            <li>
+                <a href="<?php echo esc_url($permalink); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo esc_html($title); ?>
+                </a>
+            </li>
+            <?php
         endwhile;
         echo '</ul>';
     } else {
-        echo '<p>No notifications found.</p>';
+        echo '<p>' . esc_html__('No notifications found.', 'vertical-notifications') . '</p>';
     }
 
     wp_reset_postdata();

@@ -1,80 +1,74 @@
 === Vertical Notifications ===
-Contributors: samarjitkashyp
-Tags: notification, vertical scroll, notice, updates, announcement
+Contributors: samarjitkashyp, digihiveassam
+Donate link: https://digihiveassam.com/
+Tags: notification, scroll, ticker, elementor, education, updates, vertical notification
 Requires at least: 5.0
-Tested up to: 6.5
-Requires PHP: 7.4
+Tested up to: 6.8
+Requires PHP: 7.2
 Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add a vertical scrolling notification ticker to your homepage or any page using a shortcode or auto-inject option.
+Adds a custom post type "Notification" and displays vertical scrolling notifications via shortcode or auto-injection on selected pages.
 
 == Description ==
 
-**Vertical Notifications** allows administrators to display scrolling notices easily:
+**Vertical Notifications** is a lightweight plugin that allows you to display scrolling notifications on your WordPress site.
 
-- 📌 Custom post type: Notification
-- 🔁 Vertical auto-scrolling list
-- 🧩 Elementor shortcode support
-- ⚙️ Auto-inject on specific pages (optional)
-- 🧾 Admin settings: scroll speed, count, target page
-- 🎛️ Dashboard widget: Latest 5 notifications
+Features:
 
-Built for education sites, news, colleges, and more.
+- Adds a custom post type `Notification`
+- Show latest notifications as vertical ticker
+- Elementor compatible
+- Shortcode support: `[vertical_notifications]`
+- Auto-inject feature to display on selected page
+- Open notification links in new tab (optional)
+- Admin dashboard widget
+- Settings panel under **Settings > Vertical Notifications**
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/vertical-notifications` directory, or install the plugin via the WordPress plugin screen.
-2. Activate the plugin.
+1. Upload the plugin folder to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to **Settings > Vertical Notifications** to configure.
-4. Use the shortcode `[vertical_notifications]` anywhere.
+
+== Frequently Asked Questions ==
+
+= How do I display notifications on a page? =
+
+Use the shortcode: `[vertical_notifications]` or enable auto-inject from the plugin settings page.
+
+= Can I control how many notifications are shown? =
+
+Yes, go to plugin settings and adjust "Number of Notifications".
+
+= Can I change scroll speed? =
+
+Yes, set your preferred scroll speed in seconds from the settings.
 
 == Screenshots ==
 
-1. Admin settings panel
-2. Frontend vertical notification list
-3. Dashboard widget preview
+1. Notification list on the frontend.
+2. Admin settings page.
+3. Dashboard widget.
 
 == Changelog ==
 
 = 1.3.6 =
-* Added admin dashboard widget
-
-= 1.3.5 =
-* Added admin CSS to style settings panel
-
-= 1.3.4 =
-* Added logo to plugin settings header
-
-= 1.3.3 =
-* Moved admin footer and activation notice to separate file
-
-= 1.3.2 =
-* Added auto-inject option with page selector
-
-= 1.3.1 =
-* Added setting for opening links in new tab
-
-= 1.0.0 =
-* Initial release with shortcode and basic vertical scroll
-
-== Frequently Asked Questions ==
-
-= Can I control how many notifications show? =  
-Yes, go to **Settings > Vertical Notifications** and set post limit.
-
-= Can I change the scroll speed? =  
-Yes, adjustable in seconds from the same settings page.
+* Added shortcode usage display in settings
+* Added option to open links in new tab
+* Fixed escaping and sanitization for WordPress.org approval
+* Compatible with WordPress 6.8
 
 == Upgrade Notice ==
 
 = 1.3.6 =
-Adds dashboard widget and improves admin UI
+Recommended upgrade for WordPress 6.8 compatibility and WordPress.org approval compliance.
 
 == License ==
 
-This plugin is licensed under the GPLv2 or later.
+GPLv2 or later
+
 
 == Author ==
 
