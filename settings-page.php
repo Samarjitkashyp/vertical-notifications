@@ -22,6 +22,10 @@ function vn_register_settings() {
     register_setting('vn_settings_group', 'vn_open_new_tab', array(
         'sanitize_callback' => 'vn_sanitize_checkbox',
     ));
+
+    // register_setting('vn_settings_group', 'vn_pro_sticky_mode', [
+    // 'sanitize_callback' => 'vn_sanitize_checkbox',
+    // ]);
 }
 add_action('admin_init', 'vn_register_settings');
 
@@ -102,6 +106,60 @@ function vn_settings_page_html() {
                         </label>
                     </td>
                 </tr>
+
+                <tr valign="top">
+                    <th scope="row">Show Featured Image <span style="color: red;">(Pro)</span></th>
+                    <td>
+                        <input type="checkbox" disabled />
+                        <label>This feature is available in the Pro version.</label>
+                    </td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">Enable Category Filter <span style="color: red;">(Pro)</span></th>
+                    <td>
+                        <input type="checkbox" disabled />
+                        <label>This feature is available in the Pro version.</label>
+                    </td>
+                </tr>
+
+                <?php if (function_exists('vn_pro_add_content_to_notification')): ?>
+                <tr valign="top">
+                    <th scope="row">
+                        <span>Pro: Show Full Content</span> <span style="background: #f0ad4e; color: white; padding: 2px 6px; border-radius: 3px; font-size: 12px;">PRO</span>
+                    </th>
+                    <td>
+                        <input type="checkbox" name="vn_pro_show_content" value="1" <?php checked(1, get_option('vn_pro_show_content', 0)); ?> />
+                        <label for="vn_pro_show_content">Show full description/content below each notification</label>
+                    </td>
+                </tr>
+                <?php else: ?>
+                <tr valign="top">
+                    <th scope="row">
+                        <span>Pro: Show Full Content</span> <span style="background: #f0ad4e; color: white; padding: 2px 6px; border-radius: 3px; font-size: 12px;">PRO</span>
+                    </th>
+                    <td>
+                        <input type="checkbox" disabled />
+                        <label>This feature is available in the Pro version.</label>
+                    </td>
+                </tr>
+                <?php endif; ?>
+
+                <?php if (function_exists('vn_pro_check_dependencies') && get_option('vn_pro_show_content') !== null) : ?>
+                <tr valign="top">
+                    <th scope="row">Notification Background Color</th>
+                    <td>
+                        <input type="color" name="vn_pro_bg_color" value="<?php echo esc_attr(get_option('vn_pro_bg_color', '#f8fbff')); ?>" />
+                    </td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">Notification Text Color</th>
+                    <td>
+                        <input type="color" name="vn_pro_text_color" value="<?php echo esc_attr(get_option('vn_pro_text_color', '#003366')); ?>" />
+                    </td>
+                </tr>
+                <?php endif; ?>
             </table>
 
             <?php submit_button(); ?>
